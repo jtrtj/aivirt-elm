@@ -1,0 +1,28 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="UTF-8">
+	<title>Aivirt</title>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.2/css/bulma.min.css" />
+</head>
+
+<body>
+	<nav class="navbar is-dark" role="navigation" aria-label="main navigation">
+			<div class="navbar-brand">
+				<a class="navbar-item" id="logo">
+					<img src="https://i.imgur.com/IXjEG6b.png" width="112" height="28">
+				</a>
+				<a class="navbar-item" id="logo-message">
+					Clicking here will reset the game.
+				</a>
+			</div>
+	</nav>
+
+<div id="elm"></div>
+<script src="elm.js"></script>
+<script>Elm.Main.init({
+		node: document.getElementById("elm")
+})
+</script>
+</body>
+</html>

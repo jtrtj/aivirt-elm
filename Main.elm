@@ -1,4 +1,4 @@
-module Aivirt exposing (all)
+module Main exposing (main)
 
 import Browser
 import Html exposing (..)
@@ -7,7 +7,7 @@ import Html.Events exposing (..)
 
 
 main =
-    Browser.sandbox { init = model, view = view, update = update }
+    Browser.sandbox { init = init, view = view, update = update }
 
 
 type alias Question =
@@ -59,8 +59,8 @@ questionTwo =
     }
 
 
-model : Game
-model =
+init : Game
+init =
     { id = 1
     , date = "1/18/19"
     , questions =
@@ -68,3 +68,40 @@ model =
         , questionTwo
         ]
     }
+
+
+type Msg
+    = NextQuestion Game
+
+
+update : Msg -> Game -> Game
+update msg model =
+    case msg of
+        NextQuestion game ->
+            { game | id = game.id + 1 }
+
+
+view : Game -> Html Msg
+view model =
+    section [ class "hero is-dark is-fullheight" ]
+        [ div [ class "hero-body" ]
+            [ div [ class "container" ]
+                [ h1 [ class "tite" ] [ text "Welcome to Aivirt" ]
+                , h2 [ class "subtitle" ]
+                    [ a [ class "button is-danger is-inverted is-outlined" ] [ text "Play today's game" ]
+                    ]
+                ]
+            ]
+        ]
+
+
+questionAnswersButtons : Question -> Html msg
+questionAnswersButtons question =
+    question.answers
+        |> List.map createButton
+        |> ul []
+
+
+createButton : String -> Html msg
+createButton questionText =
+    li [] [ text questionText ]
