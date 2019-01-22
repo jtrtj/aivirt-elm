@@ -1,7 +1,7 @@
 module Main exposing (main)
 
+import Array exposing (..)
 import Browser
-import Dict exposing (Dict)
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
@@ -9,24 +9,6 @@ import Html.Events exposing (..)
 
 main =
     Browser.sandbox { init = init, view = view, update = update }
-
-
-type alias Question =
-    { question : String
-    , correct_answer : String
-    , answers : List String
-    , image_url : String
-    , image_author : String
-    , image_author_profile : String
-    }
-
-
-type alias Game =
-    { id : Int
-    , date : String
-    , questions : List Question
-    , currentQuestion : Int
-    }
 
 
 questionOne : Question
@@ -61,58 +43,124 @@ questionTwo =
     }
 
 
-init : Game
-init =
-    { id = 1
-    , date = "1/18/19"
-    , questions =
-        [ questionOne
-        , questionTwo
-        ]
-    , currentQuestion = 0
+type alias Question =
+    { question : String
+    , correct_answer : String
+    , answers : List String
+    , image_url : String
+    , image_author : String
+    , image_author_profile : String
     }
 
 
-gameQuestions : Game -> Dict Int Question
-gameQuestions game =
-    List.indexedMap Tuple.pair game.questions
-        |> Dict.fromList
+type alias Result =
+    { correct : Bool
+    , question : Question
+    }
+
+
+type alias Model =
+    { questions : Array Question
+    , currentQuestionIndex : Int
+    , currentQuestion : Question
+    , guess : String
+    , results : List Result
+    }
+
+
+init : Model
+init =
+    Model (Array.fromList [ questionOne, questionTwo ]) -1 questionOne "" []
+
+
+
+-- Update
 
 
 type Msg
-    = StartGame
-    | NextQuestion Game
+    = GamePlay
+    | Answer String
 
 
-update : Msg -> Game -> Game
+update : Msg -> Model -> Model
 update msg model =
     case msg of
-        StartGame ->
-            model
+        GamePlay ->
+            gamePlay model
 
-        NextQuestion game ->
-            { game | currentQuestion = game.currentQuestion + 1 }
+        Answer guess ->
+            checkAnswer model guess
 
 
-view : Game -> Html Msg
+checkAnswer : Model -> String -> Model
+checkAnswer model guess =
+    if guess == (getCurrentQuestion model).correct_answer then
+        { model | results = model.results ++ [ Result True (getCurrentQuestion model) ], currentQuestionIndex = model.currentQuestionIndex + 1 }
+
+    else
+        { model | results = model.results ++ [ Result False (getCurrentQuestion model) ], currentQuestionIndex = model.currentQuestionIndex + 1 }
+
+
+getCurrentQuestion : Model -> Question
+getCurrentQuestion model =
+    case Array.get model.currentQuestionIndex model.questions of
+        Just question ->
+            question
+
+        Nothing ->
+            questionOne
+
+
+gamePlay : Model -> Model
+gamePlay model =
+    { model | currentQuestionIndex = model.currentQuestionIndex + 1 }
+
+
+
+-- View
+
+
+view : Model -> Html Msg
 view model =
-    div []
-        [ div [] [ getQuestion (gameQuestions model) model.currentQuestion ]
-        , div [] [ button [ onClick (NextQuestion model) ] [ text "next" ] ]
+    displayGame model
+
+
+displayGame : Model -> Html Msg
+displayGame model =
+    if model.currentQuestionIndex < 0 then
+        gameStart model
+
+    else if model.currentQuestionIndex < Array.length model.questions then
+        getQuestion model
+
+    else
+        gameEnd model
+
+
+gameStart game =
+    section [ class "hero is-dark is-fullheight" ]
+        [ div [ class "hero-body" ]
+            [ div [ class "container" ]
+                [ h1 [ class "title" ] [ text "Welcome to Aivirt" ]
+                , h2 [ class "subtitle" ]
+                    [ a [ class "button is-danger is-inverted is-outlined", onClick GamePlay ] [ text "Play today's game" ]
+                    ]
+                ]
+            ]
         ]
 
 
-getQuestion : Dict Int Question -> Int -> Html msg
-getQuestion questions index =
-    case Dict.get index questions of
+getQuestion : Model -> Html Msg
+getQuestion game =
+    case Array.get game.currentQuestionIndex game.questions of
         Just question ->
             questionHero question
 
         Nothing ->
-            gameStart
+            div [] [ text "There has been an error." ]
 
 
-questionHero : Question -> Html msg
+questionHero : Question -> Html Msg
 questionHero question =
     section (heroStyle question)
         [ div [ class "hero-body" ]
@@ -152,18 +200,74 @@ questionHero question =
         ]
 
 
-answerButtons : Question -> List (Html msg)
+answerButtons : Question -> List (Html Msg)
 answerButtons question =
     List.map answerButton question.answers
 
 
-answerButton : String -> Html msg
-answerButton answer =
+answerButton : String -> Html Msg
+answerButton guess =
     tr []
         [ td []
-            [ a [ class "button is-danger is-inverted is-outlined" ] [ text answer ]
+            [ a [ class "button is-danger is-inverted is-outlined", onClick (Answer guess) ] [ text guess ]
             ]
         ]
+
+
+gameEnd game =
+    section [ class "hero is-dark is-fullheight" ]
+        [ div [ class "container" ]
+            [ h2 [ class "subtitle" ]
+                [ article [ class "media" ]
+                    [ div [ class "media-content" ]
+                        [ div [ class "content" ]
+                            [ p [ class "title" ]
+                                [ text "Game Over!" ]
+                            , nav
+                                [ class "level is-mobile" ]
+                                [ div [ class "level-left" ]
+                                    [ resultTable game ]
+                                ]
+                            ]
+                        ]
+                    ]
+                ]
+            ]
+        ]
+
+
+resultTable : Model -> Html Msg
+resultTable game =
+    table []
+        [ thead []
+            [ tr []
+                [ th [] [ text "Question" ]
+                , th [] [ text "Correct?" ]
+                , th [] [ text "Answer" ]
+                ]
+            ]
+        , tbody
+            []
+            (List.map resultRow game.results)
+        ]
+
+
+resultRow : Result -> Html msg
+resultRow result =
+    tr []
+        [ td [] [ text result.question.question ]
+        , td [] [ text (resultSymbol result.correct) ]
+        , td [] [ text result.question.correct_answer ]
+        ]
+
+
+resultSymbol : Bool -> String
+resultSymbol result =
+    if result then
+        "✔️"
+
+    else
+        "❌"
 
 
 heroStyle : Question -> List (Attribute msg)
@@ -175,16 +279,3 @@ heroStyle question =
     , style "background-attachment" "fixed"
     , style "background-size" "cover"
     ]
-
-
-gameStart =
-    section [ class "hero is-dark is-fullheight" ]
-        [ div [ class "hero-body" ]
-            [ div [ class "container" ]
-                [ h1 [ class "title" ] [ text "Welcome to Aivirt" ]
-                , h2 [ class "subtitle" ]
-                    [ a [ class "button is-danger is-inverted is-outlined" ] [ text "Play today's game" ]
-                    ]
-                ]
-            ]
-        ]
