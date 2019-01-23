@@ -62,7 +62,6 @@ type alias Result =
 type alias Model =
     { questions : Array Question
     , currentQuestionIndex : Int
-    , currentQuestion : Question
     , guess : String
     , results : List Result
     }
@@ -70,7 +69,7 @@ type alias Model =
 
 init : Model
 init =
-    Model (Array.fromList [ questionOne, questionTwo ]) -1 questionOne "" []
+    Model (Array.fromList [ questionOne, questionTwo ]) -1 "" []
 
 
 
@@ -175,7 +174,7 @@ questionHero question =
                                     [ class "level is-mobile" ]
                                     [ div [ class "level-left" ]
                                         [ table []
-                                            (answerButtons question)
+                                            [ tbody [] (answerButtons question) ]
                                         ]
                                     ]
                                 ]

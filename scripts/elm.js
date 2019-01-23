@@ -4870,9 +4870,9 @@ function _Browser_load(url)
 		}
 	}));
 }
-var author$project$Main$Model = F5(
-	function (questions, currentQuestionIndex, currentQuestion, guess, results) {
-		return {currentQuestion: currentQuestion, currentQuestionIndex: currentQuestionIndex, guess: guess, questions: questions, results: results};
+var author$project$Main$Model = F4(
+	function (questions, currentQuestionIndex, guess, results) {
+		return {currentQuestionIndex: currentQuestionIndex, guess: guess, questions: questions, results: results};
 	});
 var elm$core$Basics$EQ = {$: 'EQ'};
 var elm$core$Basics$LT = {$: 'LT'};
@@ -5141,13 +5141,12 @@ var elm$core$Array$fromList = function (list) {
 var elm$core$Basics$negate = function (n) {
 	return -n;
 };
-var author$project$Main$init = A5(
+var author$project$Main$init = A4(
 	author$project$Main$Model,
 	elm$core$Array$fromList(
 		_List_fromArray(
 			[author$project$Main$questionOne, author$project$Main$questionTwo])),
 	-1,
-	author$project$Main$questionOne,
 	'',
 	_List_Nil);
 var author$project$Main$Result = F2(
@@ -6004,7 +6003,13 @@ var author$project$Main$questionHero = function (question) {
 																				A2(
 																				elm$html$Html$table,
 																				_List_Nil,
-																				author$project$Main$answerButtons(question))
+																				_List_fromArray(
+																					[
+																						A2(
+																						elm$html$Html$tbody,
+																						_List_Nil,
+																						author$project$Main$answerButtons(question))
+																					]))
 																			]))
 																	]))
 															]))
