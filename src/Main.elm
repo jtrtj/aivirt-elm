@@ -1,55 +1,31 @@
 module Main exposing (main)
 
+import Aivirt exposing (Question)
 import Array exposing (..)
 import Browser
 import Html exposing (..)
 import Html.Attributes exposing (..)
 import Html.Events exposing (..)
+import Questions exposing (list)
 
 
 main =
     Browser.sandbox { init = init, view = view, update = update }
 
 
-questionOne : Question
-questionOne =
-    { question = "Nephelococcygia is the practice of doing what?"
-    , correct_answer = "Finding shapes in clouds"
+dummyQuestion : Question
+dummyQuestion =
+    { question = ""
+    , correct_answer = ""
     , answers =
-        [ "Finding shapes in clouds"
-        , "Sleeping with your eyes open"
-        , "Breaking glass with your voice"
-        , "Swimming in freezing water"
+        [ ""
+        , ""
+        , ""
+        , ""
         ]
-    , image_url = "https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixlib"
-    , image_author = "Austin Chan"
-    , image_author_profile = "https://unsplash.com/@austinchan"
-    }
-
-
-questionTwo : Question
-questionTwo =
-    { question = "What is the name of the City in Saints Row The Third?"
-    , correct_answer = "Steelport"
-    , answers =
-        [ "Steelport"
-        , "Stilwater"
-        , "Carcer"
-        , "Liberty"
-        ]
-    , image_url = "https://images.unsplash.com/photo-1499364615650-ec38552f4f34?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQxMjM5fQ"
-    , image_author = "Matthew Kalapuch"
-    , image_author_profile = "Matthew Kalapuch"
-    }
-
-
-type alias Question =
-    { question : String
-    , correct_answer : String
-    , answers : List String
-    , image_url : String
-    , image_author : String
-    , image_author_profile : String
+    , image_url = ""
+    , image_author = ""
+    , image_author_profile = ""
     }
 
 
@@ -69,7 +45,7 @@ type alias Model =
 
 init : Model
 init =
-    Model (Array.fromList [ questionOne, questionTwo ]) -1 "" []
+    Model (Array.fromList Questions.list) -1 "" []
 
 
 
@@ -94,20 +70,23 @@ update msg model =
 checkAnswer : Model -> String -> Model
 checkAnswer model guess =
     if guess == (getCurrentQuestion model).correct_answer then
-        { model | results = model.results ++ [ Result True (getCurrentQuestion model) ], currentQuestionIndex = model.currentQuestionIndex + 1 }
+        { model
+            | results = model.results ++ [ Result True (getCurrentQuestion model) ]
+            , currentQuestionIndex = model.currentQuestionIndex + 1
+        }
 
     else
-        { model | results = model.results ++ [ Result False (getCurrentQuestion model) ], currentQuestionIndex = model.currentQuestionIndex + 1 }
+        { model
+            | results = model.results ++ [ Result False (getCurrentQuestion model) ]
+            , currentQuestionIndex = model.currentQuestionIndex + 1
+        }
 
 
 getCurrentQuestion : Model -> Question
 getCurrentQuestion model =
-    case Array.get model.currentQuestionIndex model.questions of
-        Just question ->
-            question
-
-        Nothing ->
-            questionOne
+    model.questions
+    |> Array.get model.currentQuestionIndex
+    |> Maybe.withDefault dummyQuestion
 
 
 gamePlay : Model -> Model
@@ -130,7 +109,7 @@ displayGame model =
         gameStart model
 
     else if model.currentQuestionIndex < Array.length model.questions then
-        getQuestion model
+        getQuestionHero model
 
     else
         gameEnd model
@@ -149,8 +128,8 @@ gameStart game =
         ]
 
 
-getQuestion : Model -> Html Msg
-getQuestion game =
+getQuestionHero : Model -> Html Msg
+getQuestionHero game =
     case Array.get game.currentQuestionIndex game.questions of
         Just question ->
             questionHero question
@@ -213,6 +192,7 @@ answerButton guess =
         ]
 
 
+gameEnd : Model -> Html Msg
 gameEnd game =
     section [ class "hero is-dark is-fullheight" ]
         [ div [ class "container" ]

@@ -4954,7 +4954,43 @@ var elm$core$Set$toList = function (_n0) {
 	var dict = _n0.a;
 	return elm$core$Dict$keys(dict);
 };
-var author$project$Main$questionOne = {
+var author$project$Questions$questionEight = {
+	answers: _List_fromArray(
+		['Stanley Kubrick', 'Steven Spielberg', 'James Cameron', 'Tim Burton']),
+	correct_answer: 'Steven Spielberg',
+	image_author: 'Aaron Huber',
+	image_author_profile: 'https://unsplash.com/@aahubs',
+	image_url: 'https://images.unsplash.com/photo-1522725539107-ed9cef5284d1?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQxMjM5fQ&s=168aca1cc1a3417cb79404297d308709',
+	question: 'Who directed \"E.T. the Extra-Terrestrial\" (1982)?'
+};
+var author$project$Questions$questionFive = {
+	answers: _List_fromArray(
+		['1992', '1972', '1982', '1962']),
+	correct_answer: '1982',
+	image_author: 'chuttersnap',
+	image_author_profile: 'https://unsplash.com/@chuttersnap',
+	image_url: 'https://images.unsplash.com/photo-1475906089153-644d9452ce87?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQxMjM5fQ',
+	question: 'When did the CD begin to appear on the consumer market?'
+};
+var author$project$Questions$questionFour = {
+	answers: _List_fromArray(
+		['George Harrison', 'Ringo Starr', 'John Lennon', 'Paul McCartney']),
+	correct_answer: 'Ringo Starr',
+	image_author: 'Luca Bravo',
+	image_author_profile: 'https://unsplash.com/@lucabravo',
+	image_url: 'https://images.unsplash.com/photo-1496413651143-777c348e8329?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQxMjM5fQ',
+	question: 'Which member of \"The Beatles\" narrated episodes of \"Thomas the Tank Engine\"?'
+};
+var author$project$Questions$questionNine = {
+	answers: _List_fromArray(
+		['Mario\'s Game Gallery', 'Super Mario 64', 'Mario Tennis', 'Dr. Mario 64']),
+	correct_answer: 'Mario\'s Game Gallery',
+	image_author: 'Nikita Kachanovsky',
+	image_author_profile: 'https://unsplash.com/@nkachanovskyyy',
+	image_url: 'https://images.unsplash.com/photo-1507457379470-08b800bebc67?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQxMjM5fQ',
+	question: 'Which game was the first time Mario was voiced by Charles Martinet?'
+};
+var author$project$Questions$questionOne = {
 	answers: _List_fromArray(
 		['Finding shapes in clouds', 'Sleeping with your eyes open', 'Breaking glass with your voice', 'Swimming in freezing water']),
 	correct_answer: 'Finding shapes in clouds',
@@ -4963,7 +4999,43 @@ var author$project$Main$questionOne = {
 	image_url: 'https://images.unsplash.com/photo-1496449903678-68ddcb189a24?ixlib',
 	question: 'Nephelococcygia is the practice of doing what?'
 };
-var author$project$Main$questionTwo = {
+var author$project$Questions$questionSeven = {
+	answers: _List_fromArray(
+		['Peru', 'Brazil', 'Chile', 'Argentina']),
+	correct_answer: 'Chile',
+	image_author: 'Cheryl Winn-Boujnida',
+	image_author_profile: 'https://unsplash.com/@cbouji',
+	image_url: 'https://images.unsplash.com/photo-1455723576895-6ab1d5abbcb9?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQxMjM5fQ',
+	question: 'In the War of the Pacific (1879 - 1883), Bolivia lost its access to the Pacific Ocean after being defeated by which South American country?'
+};
+var author$project$Questions$questionSix = {
+	answers: _List_fromArray(
+		['Gallium', 'Caesium', 'Beryllium', 'Mercury']),
+	correct_answer: 'Beryllium',
+	image_author: 'NASA',
+	image_author_profile: 'https://unsplash.com/@nasa',
+	image_url: 'https://images.unsplash.com/photo-1447433865958-f402f562b843?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQxMjM5fQ&s=ba20a0c489c71e83ffe4a4cc7abb507b',
+	question: 'All the following metal elements are liquids at or near room temperature EXCEPT:'
+};
+var author$project$Questions$questionTen = {
+	answers: _List_fromArray(
+		['Boregard', 'Tim', 'James', 'Jackson']),
+	correct_answer: 'Tim',
+	image_author: 'Matty Adame',
+	image_author_profile: 'https://unsplash.com/@omgitsmattyvee',
+	image_url: 'https://images.unsplash.com/photo-1501527410-63b3b08336a6?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQxMjM5fQ',
+	question: 'What is the main character\'s name in \"Braid\"?'
+};
+var author$project$Questions$questionThree = {
+	answers: _List_fromArray(
+		['Baritone horn', 'Piano', 'Saxophone', 'Violin']),
+	correct_answer: 'Saxophone',
+	image_author: 'Hosein Amiri',
+	image_author_profile: 'https://unsplash.com/@hoseinamiri',
+	image_url: 'https://images.unsplash.com/photo-1537704237619-6d30559725c3?ixlib=rb-0.3.5&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQxMjM5fQ&s=26c222aad21dc78d88447fe9733b82ac',
+	question: 'Former United States President Bill Clinton famously played which instrument?'
+};
+var author$project$Questions$questionTwo = {
 	answers: _List_fromArray(
 		['Steelport', 'Stilwater', 'Carcer', 'Liberty']),
 	correct_answer: 'Steelport',
@@ -4972,6 +5044,8 @@ var author$project$Main$questionTwo = {
 	image_url: 'https://images.unsplash.com/photo-1499364615650-ec38552f4f34?ixlib=rb-1.2.1&q=85&fm=jpg&crop=entropy&cs=srgb&ixid=eyJhcHBfaWQiOjQxMjM5fQ',
 	question: 'What is the name of the City in Saints Row The Third?'
 };
+var author$project$Questions$list = _List_fromArray(
+	[author$project$Questions$questionOne, author$project$Questions$questionTwo, author$project$Questions$questionThree, author$project$Questions$questionFour, author$project$Questions$questionFive, author$project$Questions$questionSix, author$project$Questions$questionSeven, author$project$Questions$questionEight, author$project$Questions$questionNine, author$project$Questions$questionTen]);
 var elm$core$Array$Array_elm_builtin = F4(
 	function (a, b, c, d) {
 		return {$: 'Array_elm_builtin', a: a, b: b, c: c, d: d};
@@ -5143,9 +5217,7 @@ var elm$core$Basics$negate = function (n) {
 };
 var author$project$Main$init = A4(
 	author$project$Main$Model,
-	elm$core$Array$fromList(
-		_List_fromArray(
-			[author$project$Main$questionOne, author$project$Main$questionTwo])),
+	elm$core$Array$fromList(author$project$Questions$list),
 	-1,
 	'',
 	_List_Nil);
@@ -5153,6 +5225,15 @@ var author$project$Main$Result = F2(
 	function (correct, question) {
 		return {correct: correct, question: question};
 	});
+var author$project$Main$dummyQuestion = {
+	answers: _List_fromArray(
+		['', '', '', '']),
+	correct_answer: '',
+	image_author: '',
+	image_author_profile: '',
+	image_url: '',
+	question: ''
+};
 var elm$core$Bitwise$shiftRightZfBy = _Bitwise_shiftRightZfBy;
 var elm$core$Array$bitMask = 4294967295 >>> (32 - elm$core$Array$shiftStep);
 var elm$core$Bitwise$and = _Bitwise_and;
@@ -5200,14 +5281,20 @@ var elm$core$Array$get = F2(
 			A2(elm$core$Elm$JsArray$unsafeGet, elm$core$Array$bitMask & index, tail)) : elm$core$Maybe$Just(
 			A3(elm$core$Array$getHelp, startShift, index, tree)));
 	});
+var elm$core$Maybe$withDefault = F2(
+	function (_default, maybe) {
+		if (maybe.$ === 'Just') {
+			var value = maybe.a;
+			return value;
+		} else {
+			return _default;
+		}
+	});
 var author$project$Main$getCurrentQuestion = function (model) {
-	var _n0 = A2(elm$core$Array$get, model.currentQuestionIndex, model.questions);
-	if (_n0.$ === 'Just') {
-		var question = _n0.a;
-		return question;
-	} else {
-		return author$project$Main$questionOne;
-	}
+	return A2(
+		elm$core$Maybe$withDefault,
+		author$project$Main$dummyQuestion,
+		A2(elm$core$Array$get, model.currentQuestionIndex, model.questions));
 };
 var elm$core$Basics$False = {$: 'False'};
 var elm$core$Basics$append = _Utils_append;
@@ -6087,7 +6174,7 @@ var author$project$Main$questionHero = function (question) {
 					]))
 			]));
 };
-var author$project$Main$getQuestion = function (game) {
+var author$project$Main$getQuestionHero = function (game) {
 	var _n0 = A2(elm$core$Array$get, game.currentQuestionIndex, game.questions);
 	if (_n0.$ === 'Just') {
 		var question = _n0.a;
@@ -6109,7 +6196,7 @@ var elm$core$Array$length = function (_n0) {
 var author$project$Main$displayGame = function (model) {
 	return (model.currentQuestionIndex < 0) ? author$project$Main$gameStart(model) : ((_Utils_cmp(
 		model.currentQuestionIndex,
-		elm$core$Array$length(model.questions)) < 0) ? author$project$Main$getQuestion(model) : author$project$Main$gameEnd(model));
+		elm$core$Array$length(model.questions)) < 0) ? author$project$Main$getQuestionHero(model) : author$project$Main$gameEnd(model));
 };
 var author$project$Main$view = function (model) {
 	return author$project$Main$displayGame(model);
@@ -7013,15 +7100,6 @@ var elm$core$Dict$isEmpty = function (dict) {
 		return false;
 	}
 };
-var elm$core$Maybe$withDefault = F2(
-	function (_default, maybe) {
-		if (maybe.$ === 'Just') {
-			var value = maybe.a;
-			return value;
-		} else {
-			return _default;
-		}
-	});
 var elm$browser$Debugger$Expando$viewExtraTiny = function (value) {
 	if (value.$ === 'Record') {
 		var record = value.b;
